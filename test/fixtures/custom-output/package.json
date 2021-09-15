@@ -1,0 +1,8 @@
+{
+  "name": "custom-output",
+  "main": "./dist/index.js",
+  "exports": "./dist/custom-name.js",
+  "scripts": {
+    "build": "microbundle -f cjs,es,umd,modern"
+  }
+}

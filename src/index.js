@@ -252,13 +252,6 @@ async function getEntries({ input, cwd }) {
 	return entries;
 }
 
-function replaceName(filename, name) {
-	return resolve(
-		dirname(filename),
-		name + basename(filename).replace(/^[^.]+/, ''),
-	);
-}
-
 function walk(exports) {
 	if (typeof exports === 'string') return exports;
 	return walk(exports['.'] || exports.import || exports.module);
@@ -272,42 +265,42 @@ function getMain({ options, entry, format }) {
 		return options.output;
 	}
 
-	let mainNoExtension = options.output;
+	let defaultOutputNoExtension = options.output;
 	if (options.multipleEntries) {
 		let name = entry.match(
 			/([\\/])index(\.(umd|cjs|es|m))?\.(mjs|cjs|[tj]sx?)$/,
 		)
-			? mainNoExtension
+			? defaultOutputNoExtension
 			: entry;
-		mainNoExtension = resolve(dirname(mainNoExtension), basename(name));
+		defaultOutputNoExtension = resolve(
+			dirname(defaultOutputNoExtension),
+			basename(name),
+		);
 	}
-	mainNoExtension = mainNoExtension.replace(
+	defaultOutputNoExtension = defaultOutputNoExtension.replace(
 		/(\.(umd|cjs|es|m))?\.(mjs|cjs|[tj]sx?)$/,
 		'',
 	);
 
 	const mainsByFormat = {};
 
-	mainsByFormat.es = replaceName(
+	mainsByFormat.es = resolve(
 		pkg.module && !pkg.module.match(/src\//)
 			? pkg.module
-			: pkg['jsnext:main'] || 'x.esm.js',
-		mainNoExtension,
+			: pkg['jsnext:main'] || `${defaultOutputNoExtension}.esm.js`,
 	);
-	mainsByFormat.modern = replaceName(
+	mainsByFormat.modern = resolve(
 		(pkg.exports && walk(pkg.exports)) ||
 			(pkg.syntax && pkg.syntax.esmodules) ||
 			pkg.esmodule ||
-			'x.modern.js',
-		mainNoExtension,
+			`${defaultOutputNoExtension}.modern.js`,
 	);
-	mainsByFormat.cjs = replaceName(
-		pkg['cjs:main'] || (pkg.type && pkg.type === 'module' ? 'x.cjs' : 'x.js'),
-		mainNoExtension,
+	mainsByFormat.cjs = resolve(
+		pkg['cjs:main'] ||
+			`${defaultOutputNoExtension}.${pkg.type === 'module' ? 'c' : ''}js`,
 	);
-	mainsByFormat.umd = replaceName(
-		pkg['umd:main'] || pkg.unpkg || 'x.umd.js',
-		mainNoExtension,
+	mainsByFormat.umd = resolve(
+		pkg['umd:main'] || pkg.unpkg || `${defaultOutputNoExtension}.umd.js`,
 	);
 
 	return mainsByFormat[format] || mainsByFormat.cjs;

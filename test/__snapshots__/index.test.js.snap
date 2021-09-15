@@ -1417,6 +1417,122 @@ exports[`fixtures build custom-babelrc with microbundle 5`] = `
 "
 `;
 
+exports[`fixtures build custom-output with microbundle 1`] = `
+"Used script: microbundle -f cjs,es,umd,modern
+
+Directory tree:
+
+custom-output
+  dist
+    custom-name.js
+    custom-name.js.map
+    index.esm.js
+    index.esm.js.map
+    index.js
+    index.js.map
+    index.umd.js
+    index.umd.js.map
+  package.json
+  src
+    index.js
+    two.js
+
+
+Build \\"customOutput\\" to dist:
+187 B: index.js.gz
+138 B: index.js.br
+188 B: index.esm.js.gz
+139 B: index.esm.js.br
+274 B: index.umd.js.gz
+203 B: index.umd.js.br
+113 B: custom-name.js.gz
+92 B: custom-name.js.br"
+`;
+
+exports[`fixtures build custom-output with microbundle 2`] = `8`;
+
+exports[`fixtures build custom-output with microbundle 3`] = `
+"async function n(...n){return n.reduce((n,t)=>n+t,0)}async function t(...t){return[await n(...t),await n(...t)]}export default t;
+//# sourceMappingURL=custom-name.js.map
+"
+`;
+
+exports[`fixtures build custom-output with microbundle 4`] = `
+"var r=function(){try{var r=arguments;return Promise.resolve([].slice.call(r).reduce(function(r,e){return r+e},0))}catch(r){return Promise.reject(r)}};export default function(){try{var e=arguments,t=[].slice.call(e);return Promise.resolve(r.apply(void 0,t)).then(function(e){return Promise.resolve(r.apply(void 0,t)).then(function(r){return[e,r]})})}catch(r){return Promise.reject(r)}}
+//# sourceMappingURL=index.esm.js.map
+"
+`;
+
+exports[`fixtures build custom-output with microbundle 5`] = `
+"var r=function(){try{var r=arguments;return Promise.resolve([].slice.call(r).reduce(function(r,e){return r+e},0))}catch(r){return Promise.reject(r)}};module.exports=function(){try{var e=arguments,t=[].slice.call(e);return Promise.resolve(r.apply(void 0,t)).then(function(e){return Promise.resolve(r.apply(void 0,t)).then(function(r){return[e,r]})})}catch(r){return Promise.reject(r)}};
+//# sourceMappingURL=index.js.map
+"
+`;
+
+exports[`fixtures build custom-output with microbundle 6`] = `
+"!function(e,t){\\"object\\"==typeof exports&&\\"undefined\\"!=typeof module?module.exports=t():\\"function\\"==typeof define&&define.amd?define(t):(e||self).customOutput=t()}(this,function(){var e=function(){try{var e=arguments;return Promise.resolve([].slice.call(e).reduce(function(e,t){return e+t},0))}catch(e){return Promise.reject(e)}};return function(){try{var t=arguments,r=[].slice.call(t);return Promise.resolve(e.apply(void 0,r)).then(function(t){return Promise.resolve(e.apply(void 0,r)).then(function(e){return[t,e]})})}catch(e){return Promise.reject(e)}}});
+//# sourceMappingURL=index.umd.js.map
+"
+`;
+
+exports[`fixtures build custom-outputs with microbundle 1`] = `
+"Used script: microbundle -f cjs,es,umd,modern
+
+Directory tree:
+
+custom-outputs
+  dist
+    custom-exports.js
+    custom-exports.js.map
+    custom-main.js
+    custom-main.js.map
+    custom-module.js
+    custom-module.js.map
+    custom-unpkg.js
+    custom-unpkg.js.map
+  package.json
+  src
+    index.js
+    two.js
+
+
+Build \\"customOutputs\\" to dist:
+187 B: custom-main.js.gz
+138 B: custom-main.js.br
+188 B: custom-module.js.gz
+139 B: custom-module.js.br
+273 B: custom-unpkg.js.gz
+203 B: custom-unpkg.js.br
+113 B: custom-exports.js.gz
+92 B: custom-exports.js.br"
+`;
+
+exports[`fixtures build custom-outputs with microbundle 2`] = `8`;
+
+exports[`fixtures build custom-outputs with microbundle 3`] = `
+"async function n(...n){return n.reduce((n,t)=>n+t,0)}async function t(...t){return[await n(...t),await n(...t)]}export default t;
+//# sourceMappingURL=custom-exports.js.map
+"
+`;
+
+exports[`fixtures build custom-outputs with microbundle 4`] = `
+"var r=function(){try{var r=arguments;return Promise.resolve([].slice.call(r).reduce(function(r,e){return r+e},0))}catch(r){return Promise.reject(r)}};module.exports=function(){try{var e=arguments,t=[].slice.call(e);return Promise.resolve(r.apply(void 0,t)).then(function(e){return Promise.resolve(r.apply(void 0,t)).then(function(r){return[e,r]})})}catch(r){return Promise.reject(r)}};
+//# sourceMappingURL=custom-main.js.map
+"
+`;
+
+exports[`fixtures build custom-outputs with microbundle 5`] = `
+"var r=function(){try{var r=arguments;return Promise.resolve([].slice.call(r).reduce(function(r,e){return r+e},0))}catch(r){return Promise.reject(r)}};export default function(){try{var e=arguments,t=[].slice.call(e);return Promise.resolve(r.apply(void 0,t)).then(function(e){return Promise.resolve(r.apply(void 0,t)).then(function(r){return[e,r]})})}catch(r){return Promise.reject(r)}}
+//# sourceMappingURL=custom-module.js.map
+"
+`;
+
+exports[`fixtures build custom-outputs with microbundle 6`] = `
+"!function(e,t){\\"object\\"==typeof exports&&\\"undefined\\"!=typeof module?module.exports=t():\\"function\\"==typeof define&&define.amd?define(t):(e||self).customOutputs=t()}(this,function(){var e=function(){try{var e=arguments;return Promise.resolve([].slice.call(e).reduce(function(e,t){return e+t},0))}catch(e){return Promise.reject(e)}};return function(){try{var t=arguments,r=[].slice.call(t);return Promise.resolve(e.apply(void 0,r)).then(function(t){return Promise.resolve(e.apply(void 0,r)).then(function(e){return[t,e]})})}catch(e){return Promise.reject(e)}}});
+//# sourceMappingURL=custom-unpkg.js.map
+"
+`;
+
 exports[`fixtures build custom-source with microbundle 1`] = `
 "Used script: microbundle
 
